@@ -4,3 +4,4 @@ src/composer.lock
 src/conf/gift.db.conf.ini
 */.DS_Store
 .DS_Store
+.idea
