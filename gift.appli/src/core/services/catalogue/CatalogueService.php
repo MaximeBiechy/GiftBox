@@ -40,7 +40,7 @@ class CatalogueService implements CatalogueServiceInterface {
 
     public function getPrestationsByCategorie(int $categ_id) : array {
         try {
-            $prestations = Prestation::where('cat_id', $categ_id)->get();
+            $prestations = Prestation::where('cat_id', $categ_id)->orderBy('tarif')->get();
         } catch (Exception $e) {
             throw new CatalogueServiceNotFoundException("La catégorie avec l'id $categ_id n'existe pas.");
         }
