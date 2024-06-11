@@ -16,7 +16,7 @@ class CatalogueService implements CatalogueServiceInterface {
     }
 
     public function getPrestations() : array {
-        $prestations = Prestation::all();
+        $prestations = Prestation::orderBy('tarif')->get();
         return $prestations->toArray();
     }
 
