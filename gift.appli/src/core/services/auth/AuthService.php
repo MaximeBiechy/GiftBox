@@ -18,6 +18,7 @@ class AuthService implements AuthServiceInterface {
         $user = new User();
         $user->user_id = $user_id;
         $user->password = $hash;
+        $user->role = 1;
         $user->save();
         return $user->id;
     }

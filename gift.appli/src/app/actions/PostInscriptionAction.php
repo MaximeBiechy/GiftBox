@@ -18,6 +18,7 @@ class PostInscriptionAction extends AbstractAction {
     
     private string $template;
     private AuthProviderInterface $authProvider;
+    
 
     public function __construct()
     {
@@ -30,6 +31,7 @@ class PostInscriptionAction extends AbstractAction {
         try {
             $body = $rq->getParsedBody();
             $user = $this->authProvider->register($body['email'], $body['password']);
+            $this->authProvider->signin($body['email'], $body['password']);
         } catch (AuthServiceNotFoundException $e) {
             throw new HttpNotFoundException($rq, $e->getMessage());
         }

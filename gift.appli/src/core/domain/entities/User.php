@@ -12,7 +12,7 @@ class User extends Model {
     // Attributs
     protected $table = 'user';
     protected $primaryKey = 'id';
-    public $timestamps = true;
+    public $timestamps = false;
     public $incrementing = false;
     public $keyType = 'string';
 
