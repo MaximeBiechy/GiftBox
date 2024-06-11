@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 use gift\appli\app\actions\GetBoxAction;
-use gift\appli\app\actions\GetBoxFormAction;
 use gift\appli\app\actions\GetCategoryAction;
 use gift\appli\app\actions\GetCategoryActionById;
 use gift\appli\app\actions\GetHomeAction;
@@ -26,117 +25,106 @@ use gift\appli\app\actions\PostInscriptionAction;
 return function (\Slim\App $app): \Slim\App {
 
     // Page d'accueil
-    $app->get(
-        '/',
+    $app->get('/',
         GetHomeAction::class
-    )->setName('/');
+        )->setName('/');
 
     // 1) Affiche toutes les prestations
-    $app->get(
-        '/prestations',
+    $app->get('/prestations',
         GetPrestationsAction::class
-    )->setName('prestations');
+        )->setName('prestations');
 
     // 2) Affiche les détails d'une prestation en fonction de son id
-    $app->get(
-        '/prestation',
+    $app->get('/prestation',
         GetPrestationByIdAction::class
-    )->setName('prestation');
+        )->setName('prestation');
     
     // 3) Affiche la liste des prestations d'une catégorie
     $app->get(
         '/prestationDeLaCategorie',
         GetPrestationByACategory::class
-    )->setName('prestationDeLaCategorie');
+        )->setName('prestationDeLaCategorie');
 
     // 4) Affiche toutes les catégories
     $app->get(
         '/categories',
         GetCategoryAction::class
-    )->setName('categories');
+        )->setName('categories');
 
     // 6) Formulaire de création d'un coffret
-    $app->get(
-        '/box/create',
+    $app->get('/box/create',
         GetCreateBox::class
         )->setName('/box/create');
         
     // 7) Ajoute une prestation à un coffret
     $app->post('/box/addPrestation', 
         PostAddPrestationToBoxAction::class
-    )->setName('/box/addPrestation');
+        )->setName('/box/addPrestation');
 
     // 11) Suppression de prestations dans un coffret
     $app->post('/deletePrestationFromBox', 
         PostDeletePrestationFromBoxAction::class
-    )->setName('/deletePrestationFromBox');
-
-    // 
-    $app->post('/defineCurrentBox', 
-        PostDefineCurrentBoxAction::class
-    )->setName('/defineCurrentBox');
+        )->setName('/deletePrestationFromBox');
+    
+    // 14) Affiche les détails d'une box
+    $app->get('/detailBox',
+        GetDetailBoxAction::class
+        )->setName('/detailBox');
 
     // 15) Affiche la page de connexion 
-    $app->get(
-        '/connexion',
+    $app->get('/connexion',
         GetConnexionAction::class
-    )->setName('connexion');
-
-    $app->post(
-        '/connexion',
+        )->setName('connexion');
+        
+    // 15) Connexion de l'utilisateur
+    $app->post('/connexion',
         PostConnexionAction::class
-    )->setName('connexion');
+        )->setName('connexion');
 
     // 16) Affiche la page d'inscription
-    $app->get(
-        '/inscription', 
+    $app->get('/inscription', 
         GetInscriptionAction::class)
-    ->setName('inscription');
-
-    $app->post(
-        '/inscription',
+        ->setName('inscription');
+        
+    // 16) Inscription de l'utilisateur
+    $app->post('/inscription',
         PostInscriptionAction::class
-    )->setName('inscription');
+        )->setName('inscription');
+        
+    // 17) Affiche toutes les box créées par l'utilisateur
+    $app->get('/box',
+        GetBoxAction::class
+        )->setName('/box');
 
+    // Affiche une catégorie en fonction de son id
+    $app->get('/categorie/{id}',
+        GetCategoryActionById::class
+        )->setName('categorie');
+        
+    // Affiche la box créée par l'utilisateur depuis le formulaire
+    $app->post('/box/create',
+        PostCreateBoxAction::class
+        )->setName('/box/created');
+    
+    // Affiche la page de création d'une catégorie
+    $app->get('/categories/create',
+        GetCreateCategorie::class)
+        ->setName('/categories/create');
+        
+    // Définir le coffret courant
+    $app->post('/defineCurrentBox', 
+        PostDefineCurrentBoxAction::class
+        )->setName('/defineCurrentBox');
+
+    // Création d'une catégorie
+    $app->post('/categories/create',
+        PostCreateCategorieAction::class
+        )->setName('/categories/created');
+
+    // Déconnexion de l'utilisateur
     $app->get('/logout', 
         GetLogoutAction::class
         )->setName('logout');
-
-    // Affiche une catégorie en fonction de son id
-    $app->get(
-        '/categorie/{id}',
-        GetCategoryActionById::class
-    )->setName('categorie');
-
-    // Affiche la box créée par l'utilisateur depuis le formulaire
-    $app->post(
-        '/box/create',
-        PostCreateBoxAction::class
-    )->setName('/box/created');
-
-    // Affiche toutes les box créées par l'utilisateur
-    $app->get(
-        '/box',
-        GetBoxAction::class
-    )->setName('/box');
-
-    $app->get(
-        '/detailBox',
-        GetDetailBoxAction::class
-    )->setName('/detailBox');
-
-    // Affiche la page de création d'une catégorie
-    $app->get(
-        '/categories/create',
-        GetCreateCategorie::class)
-    ->setName('/categories/create');
-    
-    $app->post(
-        '/categories/create',
-        PostCreateCategorieAction::class
-    )->setName('/categories/created');
-
-
 
     return $app;
 };
