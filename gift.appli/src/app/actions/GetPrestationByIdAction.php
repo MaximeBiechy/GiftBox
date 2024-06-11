@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace gift\appli\app\actions;
 
 use gift\appli\app\actions\AbstractAction;
+use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\catalogue\CatalogueService;
 use gift\appli\core\services\catalogue\CatalogueServiceInterface;
 use gift\appli\core\services\catalogue\CatalogueServiceNotFoundException;
@@ -45,6 +46,6 @@ class GetPrestationByIdAction extends AbstractAction
 
         $view = Twig::fromRequest($rq);
 
-        return $view->render($rs, $this->template, ['prestation' => $prestation]);
+        return $view->render($rs, $this->template, ['prestation' => $prestation, 'csrf' => CsrfService::generate()]);
     }
 }

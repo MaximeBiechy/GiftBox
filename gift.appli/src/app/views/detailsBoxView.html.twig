@@ -21,6 +21,7 @@
                         <form action="{{ url_for('/deletePrestationFromBox') }}" method="post" class="delete-form">
                             <input type="hidden" name="prestation_id" value="{{ prestation.id }}">
                             <input type="hidden" name="box_id" value="{{ box_id }}">
+                            <input type="hidden" name="csrf" value="{{ csrf }}">
                             <button class="remove-btn">Supprimer</button>
                         </form>
                     </div>

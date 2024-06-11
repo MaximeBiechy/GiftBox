@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace gift\appli\app\actions;
 
 use gift\appli\app\actions\AbstractAction;
+use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\authorization\AuthorizationService;
 use gift\appli\core\services\authorization\AuthorizationServiceInterface;
 use gift\appli\core\services\box\BoxService;
@@ -39,6 +40,6 @@ class GetDetailBoxAction extends AbstractAction
 
         $prestations = $this->boxService->getPrestationFromBox($idBox);
         $view = Twig::fromRequest($rq);
-        return $view->render($rs, $this->template, ['prestations' => $prestations, 'box_id' => $idBox]);
+        return $view->render($rs, $this->template, ['prestations' => $prestations, 'box_id' => $idBox, 'csrf' => CsrfService::generate()]);
     }
 }

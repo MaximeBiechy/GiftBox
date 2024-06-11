@@ -21,6 +21,6 @@ class GetInscriptionAction extends AbstractAction {
     {
         $view = Twig::fromRequest($rq);
 
-        return $view->render($rs, $this->template);
+        return $view->render($rs, $this->template, ['csrf' => CsrfService::generate()]);
     }
 }
