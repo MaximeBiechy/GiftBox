@@ -26,7 +26,10 @@ class PostCreateCategorieAction extends AbstractAction
             $body = $rq->getParsedBody() ?? null;
             CsrfService::check($body['csrf']);
                 
-            // Création de la catégorie
+            // Création de la catégorie 
+            if ($body['libelle'] !== filter_var($body['libelle'], FILTER_SANITIZE_SPECIAL_CHARS) || $body['description'] !== filter_var($body['description'], FILTER_SANITIZE_SPECIAL_CHARS) || $body['img'] !== filter_var($body['img'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+                throw new \Exception('Erreur de saisie');
+            }
             $libelle = $body['libelle'];
             $description = $body['description'];
             $img = $body['img'];

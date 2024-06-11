@@ -30,6 +30,12 @@ class PostInscriptionAction extends AbstractAction {
     {
         try {
             $body = $rq->getParsedBody();
+            if ($body['email'] !== filter_var($body['email'], FILTER_SANITIZE_EMAIL)) {
+                throw new \Exception('Erreur de saisie');
+            }
+            if ($body['password'] !== filter_var($body['password'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+                throw new \Exception('Erreur de saisie');
+            }
             $user = $this->authProvider->register($body['email'], $body['password']);
             $this->authProvider->signin($body['email'], $body['password']);
         } catch (AuthServiceNotFoundException $e) {

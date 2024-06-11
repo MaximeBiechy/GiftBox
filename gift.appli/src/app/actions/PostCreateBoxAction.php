@@ -22,20 +22,25 @@ class PostCreateBoxAction extends AbstractAction
     {
         try {
             $body = $rq->getParsedBody();
+
+            if ($body['libelle'] !== filter_var($body['libelle'], FILTER_SANITIZE_SPECIAL_CHARS) || $body['description'] !== filter_var($body['description'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+                throw new \Exception('Erreur de saisie');
+            }
             $libelle = $body['libelle'];
             $description = $body['description'];
-            $cadeau = $body['cadeau'];
-            if (isset($body['cadeau'])) {
-                $cadeau = 1;
-                $message_kdo = $body['message_kdo'];
-            } else {
-                $cadeau = 0;
+            $cadeau = isset($body['cadeau']) ? 1 : 0;
+            if ($cadeau) {
+                if ($body['message_kdo'] !== filter_var($body['message_kdo'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+                    throw new \Exception('Erreur de saisie');
+                } 
             }
+            $message_kdo = $cadeau ? filter_var($body['message_kdo'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+
             $data = [
                 'libelle' => $libelle,
                 'description' => $description,
                 'cadeau' => $cadeau,
-                'message_kdo' => $message_kdo ?? ''
+                'message_kdo' => $message_kdo
             ];
 
             $box_id = $this->boxService->createBox($data);
@@ -44,6 +49,5 @@ class PostCreateBoxAction extends AbstractAction
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
-
     }
 }
