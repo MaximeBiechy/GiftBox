@@ -1,8 +1,8 @@
 GIFT 
 
 Vérifier :
-	- les injections xss... lors de la création de formulaire
-	- les tokens	
+	- les injections xss... lors de la création de formulaire (Maxime)
+	- les tokens	(Maxime)
 	
 
 Fonctionnalités à faire :
@@ -21,4 +21,3 @@ Fonctionnalités à faire :
 	23 : Paul
 	24 : Paul
 	
-- Créer un service pour les autorisations (Maxime)
