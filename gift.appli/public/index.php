@@ -13,4 +13,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Constantes d'opérations
+define('CREATE_BOX', 1);
+define('EDIT_BOX', 2);
+define('EDIT_CATALOGUE', 3);
+
 $app->run();
