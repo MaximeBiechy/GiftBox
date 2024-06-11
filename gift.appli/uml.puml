@@ -1,0 +1,36 @@
+@startuml uml
+class Box {
+  +string id
+  +string token
+  +string libelle
+  +string description
+  +float montant
+  +string kdo
+  +string message_kdo
+  +string status
+}
+
+class Categorie {
+  +int id
+  +string libelle
+  +string description
+}
+
+class Prestation {
+  +string id
+  +string libelle
+  +string description
+  +string url
+  +string unite
+  +float tarif
+}
+
+' class BoxPrestation {
+'   +int quantite
+' }
+
+Box "*" -- "*" Prestation : contient
+Prestation "*" -- "1" Categorie : appartient à
+
+
+@enduml

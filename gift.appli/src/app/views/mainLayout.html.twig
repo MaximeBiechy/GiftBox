@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Giftbox</title>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="{{ base_path() }}/{{ css }}/style.css">
+		<script defer src="{{ base_path() }}/{{ js }}/script.js"></script>
+	</head>
+	<body>
+
+        <header>
+			<a href="{{ url_for('/') }}"><i class="bi bi-gift"></i></a>
+			<nav class="navbar">
+				<a href="{{ url_for('categories') }}">Catégories</a>
+				<a href="{{ url_for('prestations') }}">Prestations</a>
+				{% if session['user'] %}
+					<a href="{{ url_for('/box') }}">Mes box</a>
+				{% endif %}
+			</nav>
+			<div class="account-container">
+				<i class="bi bi-person" id="account-icon"></i>
+				<div class="dropdown-content">
+					{% if session['user'] %}
+						<a href="{{ url_for('logout') }}" class="btn btn-logout active">Déconnexion</a>
+					{% else %}
+						<a href="{{ url_for('connexion') }}" class="btn btn-primary active">Connexion</a>
+						<a href="{{ url_for('inscription') }}" class="btn btn-secondary active">Inscription</a>
+					{% endif %}
+				</div>
+			</div>
+        </header>
+        
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+
+		<footer>
+			<h2>Maxime BIECHY</h2>
+		</footer>
+
+	</body>
+</html>

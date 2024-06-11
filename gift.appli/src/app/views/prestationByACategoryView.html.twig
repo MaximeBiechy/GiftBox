@@ -1,0 +1,17 @@
+{% extends "mainLayout.html.twig" %}
+{% block content %}	
+	<ul class="list">
+		{% for prestation in prestations %}
+			<li class="prestation_list">
+				<a href="{{ url_for('prestation', ) }}?id={{ prestation.id }}">
+					<img src="{{ base_path() }}/{{ img }}/{{ prestation.img }}" alt="">
+						<div class="card-content">
+							<h2>{{ prestation.libelle }}</h2>
+							<p class="price">{{ prestation.tarif }} €</p>						
+						</div>
+				</a>
+			</li>
+
+		{% endfor %}
+	</ul>
+{% endblock %}

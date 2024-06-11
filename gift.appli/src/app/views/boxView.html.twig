@@ -1,0 +1,18 @@
+{% extends "mainLayout.html.twig" %}
+{% block content %}
+	<div class="box_container">
+		<a href="{{ url_for('/box/create') }}" class="btn-create">Créer une nouvelle box</a>
+		<div class="box-list">
+			{% for box in boxes %}
+				<a href="{{ url_for('/detailBox') }}?id={{ box.id }}">
+					<div class="box-item">
+						<div class="box-details">
+							<h2>{{ box.libelle }}</h2>
+							<p>{{ box.description }}</p>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

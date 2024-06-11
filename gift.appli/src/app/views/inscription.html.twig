@@ -1,0 +1,22 @@
+{% extends "mainLayout.html.twig" %}
+{% block content %}
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Bonjour</h1>
+            <form action="{{ url_for('inscription') }}" method="post">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn-login">S'inscrire</button>
+            </form>
+            <div class="signup-link">
+                <p>Déjà un compte ? <a href="{{ url_for('connexion') }}">Se connecter</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "mainLayout.html.twig" %}
+{% block content %}
+	<div class="categories_container">
+		{% if session['user']['role'] == 100 %}
+			<a href="{{ url_for('/categories/create') }}" class="btn-create">Créer une nouvelle catégorie</a>
+		{% endif %}
+		<ul class="list">
+			{% for categorie in categories %}
+					<li class="categorie_list">
+						<a href="{{ url_for('prestationDeLaCategorie') }}?id={{ categorie.id }}">
+						<img src="{{ base_path() }}/{{ img }}/{{ categorie.img }}" alt="">
+						<div class="card-content">
+							<h2>{{ categorie.libelle }}</h2>
+							<p>{{ categorie.description }}</p>
+						</div>
+						</a>					
+					</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
