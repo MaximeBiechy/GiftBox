@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ! Formulaire
+    // ! Formulaire de création de box
     const cadeauCheckbox = document.getElementById('cadeau');
     const messageCadeauGroup = document.getElementById('message_cadeau_group');
 
@@ -22,5 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ! Détails de la box
+    const quantityInputs = document.querySelectorAll('.quantity');
+        
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const prestationCard = this.closest('.prestation-card');
+                const unitPrice = prestationCard.querySelector('.price').getAttribute('data-price');
+                const totalPriceElement = prestationCard.querySelector('.total-price');
+                
+                const newQuantity = parseInt(this.value);
+                const newTotalPrice = (unitPrice * newQuantity);
+                
+                totalPriceElement.textContent = newTotalPrice;
+            });
+        });
+
+
+   
 });
 
