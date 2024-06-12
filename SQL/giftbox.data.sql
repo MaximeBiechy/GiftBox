@@ -52,16 +52,7 @@ INSERT INTO `box` (`id`, `token`, `libelle`, `description`, `montant`, `kdo`, `m
 ('2903170b-963c-3836-ad51-12732309f360', 'fphoLEPK+4xwuy8lu1z7zX1ZMZzozjjSorQMSg1hTJE=', 'perferendis sapiente qui', 'Hic nihil cupiditate et quo ut omnis et cum. Assumenda modi animi et quia. In et expedita voluptatem pariatur a.', 114.00, 0, '', 5, '2024-05-14 13:28:00', '2024-05-14 13:28:00', '9c02505f-db7f-45c3-b89c-88c34da9874a'),
 ('9c08ccf0-ca74-40cc-ba7c-b36110101360', 'OTYzYNVZo6OOhucGes0/O2KUZgH2ed5S5CkooEQ0Qk0=', 'soirée romantique', 'une belle soirée romantique ', 0.00, 1, 'bon anniv ma poulette', 1, '2024-05-14 13:28:00', '2024-05-14 13:28:00', '9c025060-bfb8-4eef-a517-17df4f0ccc67'),
 ('9c0ac7b7-37ac-4e06-bed3-c031ef6e7774', 'b88d9b8a636e3bfa186f5fe424f188a1', 'libelle de la bobox', 'description de la bobox', 0.00, 0, NULL, 1, '2024-05-14 15:39:02', '2024-05-14 15:39:02', NULL),
-('9c0ac988-bda4-4180-b9d6-f01ef6d1d2fd', 'a563f08c152e6c31e7a141a7ce155bbc', 'libelle de la bobox', 'description de la bobox', 0.00, 0, NULL, 1, '2024-05-14 15:44:07', '2024-05-14 15:44:07', NULL),
-('9c35051e-2cba-4808-86ca-272b5b53e2a9', '65658ba3ec054cfb84756607efcf436b75d91e01ac97be45cde4966d4feac2d7', 'ouai la box', 'boxbox', 0.00, 1, NULL, 1, '2024-06-04 15:35:30', '2024-06-04 15:35:30', NULL),
-('9c350576-bc09-4b04-9080-004fe93a9a66', '194ef9bb91e24dae2dfab333cd644e5837f31ee64146f62a382482e9f906eba0', 'ouai la box', 'box box', 0.00, 0, NULL, 1, '2024-06-04 15:36:28', '2024-06-04 15:36:28', NULL),
-('9c3505c7-180e-493f-88de-91469de3aa60', 'efd29cb88651c041b0b36b264b0c75d28310a3c42a1bf59cd96f69cbf599ef83', 'gggg', 'f', 0.00, 1, NULL, 1, '2024-06-04 15:37:21', '2024-06-04 15:37:21', NULL),
-('9c35067a-b6fe-48d9-8de5-de950852abf8', '96ef6af5298f08fb7c33025f0632dc09e1f0093b4ad28ab6e9cf59c01748c01b', 'àçzçf', 'hf', 0.00, 1, NULL, 1, '2024-06-04 15:39:19', '2024-06-04 15:39:19', NULL),
-('9c3506e0-d0c3-48d6-9828-24e244077798', '7e82027802eb9c053a20dba3df63ba751de529d130659cf6eaca7ee681b74964', 'egez', 'ezgaega', 0.00, 1, 'tient pd', 1, '2024-06-04 15:40:25', '2024-06-04 15:40:25', NULL),
-('9c3a9271-c2a4-4817-9af9-f25b39458028', 'b1029127cceb55f0f9fb4172992077f0c5beaa3b567454fd7e0fa83c3a9bd6a0', 'oauia', 'aojegiu', 0.00, 0, NULL, 1, '2024-06-07 09:49:49', '2024-06-07 09:49:49', '9c02505f-af68-4b51-a5b6-e52b1805eee1'),
-('9c4088c4-ddce-4e75-ab4a-d66aa2052f0f', '5f5351ddd507732a90da5979a990f1090d8d374aefeca1423f8e7f6d58069333', 'testt', 'descrr', 0.00, 0, NULL, 1, '2024-06-10 08:57:44', '2024-06-10 08:57:44', '9c02505f-af68-4b51-a5b6-e52b1805eee1'),
-('9c414143-8f28-4aa4-a9e7-e50636a4470f', '2f6bdd632e38abdc4429f009e0bae65f35e20139cb2751bd9a9938699f6ef427', 'efv', 'ezv', 0.00, 0, NULL, 1, '2024-06-10 17:33:37', '2024-06-10 17:33:37', '9c02505f-af68-4b51-a5b6-e52b1805eee1'),
-('9c41416e-f007-48c5-bd81-dcc2fcacf413', '2053627ef3e436d1589efd28dcf6102e84eefda5a42c8db49cef4325627d9845', 'ef', 'fev', 0.00, 0, NULL, 1, '2024-06-10 17:34:06', '2024-06-10 17:34:06', '9c02505f-af68-4b51-a5b6-e52b1805eee1');
+('9c0ac988-bda4-4180-b9d6-f01ef6d1d2fd', 'a563f08c152e6c31e7a141a7ce155bbc', 'libelle de la bobox', 'description de la bobox', 0.00, 0, NULL, 1, '2024-05-14 15:44:07', '2024-05-14 15:44:07', NULL);
 
 --
 -- Déchargement des données de la table `box2presta`
