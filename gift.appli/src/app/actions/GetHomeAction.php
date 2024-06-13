@@ -19,8 +19,9 @@ class GetHomeAction extends AbstractAction {
 
     function __invoke(Request $rq, Response $rs, $args): Response
     {
+
         $view = Twig::fromRequest($rq);
 
-        return $view->render($rs, $this->template);
+        return $view->render($rs, $this->template, []);
     }
 }

@@ -1,0 +1,25 @@
+{% extends "mainLayout.html.twig" %}
+{% block content %}
+    <div class="box-container">
+        <div class="box">
+            {% for prestation in prestations %}
+                <div class="prestation-card" id="{{ prestation.id }}">
+                    <img src="{{ base_path() }}/{{ img }}/{{ prestation.img }}" alt="{{ prestation.libelle }}" class="prestation-img">
+                    <div class="prestation-details">
+                        <h2>{{ prestation.libelle }}</h2>
+                        <p class="description">{{ prestation.description }}</p>
+                        <p class="price" data-price="{{ prestation.tarif }}">
+                            <span style="color:black;">Prix total : </span>
+                            <span class="total-price">{{ prestation.tarif * prestation.pivot.quantite }}</span> €
+                        </p>
+                            <div class="quantite">
+                                <p class="quantity-{{ prestation.id }}">Quantité</p>
+                                <p id="quantity-{{ prestation.id }}" class="quantity">{{ prestation.pivot.quantite }}</p>
+                            </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

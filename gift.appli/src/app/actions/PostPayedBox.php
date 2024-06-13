@@ -24,9 +24,10 @@ class PostPayedBox extends AbstractAction {
         $user = $rq->getParsedBody();
 
         if($user['email'] === $_SESSION['user']['user_id'] and password_verify($user['password'], $_SESSION['user']['password'])) {
-            $this->boxService->payedBox($_POST['id']);
-            $view = Twig::fromRequest($rq);
-            return $view->render($rs, $this->template, ['csrf' => CsrfService::generate()]);
+
+            $this->boxService->payedBox($_POST['id'], $_POST['csrf']);
+
+            return $rs->withStatus(302)->withHeader('Location', '/box/coffret/?id='.$_POST['csrf']);
         }else{
             return $rs->withStatus(400)->withHeader('Location', '/box');
         }

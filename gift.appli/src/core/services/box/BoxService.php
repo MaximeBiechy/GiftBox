@@ -76,10 +76,11 @@ class BoxService implements BoxServiceInterface {
 
     }
 
-    public function payedBox(string $idBox): void
+    public function payedBox(string $idBox, string $id_url): void
     {
         $box = Box::findOrFail($idBox);
         $box->statut = Box::PAYED;
+        $box->token= $id_url;
         $box->save();
     }
 }
