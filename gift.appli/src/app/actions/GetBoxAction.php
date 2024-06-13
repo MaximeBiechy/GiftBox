@@ -17,13 +17,13 @@ use Slim\Views\Twig;
 class GetBoxAction extends AbstractAction
 {
     private string $template;
-    private BoxServiceInterface $catalogueService;
+    private BoxServiceInterface $boxService;
     private AuthProviderInterface $authService;
 
     public function __construct()
     {
         $this->template = 'boxView.html.twig';
-        $this->catalogueService = new BoxService();
+        $this->boxService = new BoxService();
         $this->authService = new SessionAuthProvider();
     }
 
@@ -31,7 +31,7 @@ class GetBoxAction extends AbstractAction
     {
         try {
             if ($this->authService->isSignedIn()) {
-                $boxes = $this->catalogueService->getBoxFromUser($this->authService->getSignedInUser()['id']);
+                $boxes = $this->boxService->getBoxFromUser($this->authService->getSignedInUser()['id']);
                 $view = Twig::fromRequest($rq);
                 return $view->render($rs, $this->template, ['boxes' => $boxes]);
             }

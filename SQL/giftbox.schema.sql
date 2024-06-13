@@ -38,7 +38,8 @@ CREATE TABLE `box` (
   `statut` int NOT NULL DEFAULT '1',
   `created_at` datetime DEFAULT '0000-00-00 00:00:00',
   `updated_at` datetime DEFAULT NULL,
-  `createur_id` varchar(128) DEFAULT NULL
+  `createur_id` varchar(128) DEFAULT NULL,
+  `predefinie` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------

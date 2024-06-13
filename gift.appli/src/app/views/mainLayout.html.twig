@@ -17,6 +17,7 @@
 			<nav class="navbar">
 				<a href="{{ url_for('categories') }}">Catégories</a>
 				<a href="{{ url_for('prestations') }}">Prestations</a>
+				<a href="{{ url_for('box_predefinies') }}">Box Prédéfinis</a>
 				{% if session['user'] %}
 					<a href="{{ url_for('/box') }}">Mes box</a>
 				{% endif %}

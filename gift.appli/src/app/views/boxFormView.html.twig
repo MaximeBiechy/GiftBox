@@ -14,6 +14,10 @@
             <div class="form-group">
                 <label for="cadeau" class="form-label-inline">Cadeau ?</label>
                 <input type="checkbox" name="cadeau" id="cadeau" class="form-control-inline">
+                {% if session['user']['role'] == 100 %}
+                    <label for="predefinie" class="form-label-inline">Prédéfinie ?</label>
+                    <input type="checkbox" name="predefinie" id="predefinie">
+                {% endif %}
             </div>
             <div class="form-group hide" id="message_cadeau_group">
                 <label for="message_kdo">Message pour le cadeau</label>

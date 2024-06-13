@@ -32,8 +32,8 @@ class PostAddPrestationToBoxAction extends AbstractAction
             }
 
             $this->boxService->addPrestationToBox($prestation_id, $box->id);
-            
-            return $rs->withStatus(302)->withHeader('Location', '/box');
+
+            return $rs->withStatus(302)->withHeader('Location', '/prestations');
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

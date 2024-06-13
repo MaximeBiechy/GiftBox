@@ -43,7 +43,15 @@ class PostCreateBoxAction extends AbstractAction
                 'message_kdo' => $message_kdo
             ];
 
+            $predefinis = isset($body['predefinie']) ? 1 : 0;
+            if ($predefinis) {
+                $data['predefinie'] = 1;
+            }
             $box_id = $this->boxService->createBox($data);
+
+            if ($predefinis) {
+                return $rs->withStatus(302)->withHeader('Location', '/box_predefinies');
+            }
             return $rs->withStatus(302)->withHeader('Location', '/box');
 
         } catch (\Exception $e) {
