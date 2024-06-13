@@ -22,6 +22,7 @@ use gift\appli\app\actions\PostDefineCurrentBoxAction;
 use gift\appli\app\actions\PostDeletePrestationFromBoxAction;
 use gift\appli\app\actions\PostInscriptionAction;
 use gift\appli\app\actions\PostPayedBox;
+use gift\appli\app\actions\PostValidateToPayedAction;
 use gift\appli\app\actions\PostValideBox;
 
 return function (\Slim\App $app): \Slim\App {
@@ -69,9 +70,11 @@ return function (\Slim\App $app): \Slim\App {
     )->setName('/box/valider');
 
     // 10) Payer une box
-    $app->post('/box/payer[/]',
-        PostPayedBox::class
-    )->setName('/box/payer');
+    $app->post('/box/encours[/]',
+        PostValidateToPayedAction::class
+    )->setName('/box/encours');
+    $app->post('/box/payer[/]',PostPayedBox::class)
+        ->setName('/box/payer');
 
     // 11) Suppression de prestations dans un coffret
     $app->post('/deletePrestationFromBox[/]', 

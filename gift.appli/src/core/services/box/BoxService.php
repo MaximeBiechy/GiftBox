@@ -75,4 +75,11 @@ class BoxService implements BoxServiceInterface {
         }
 
     }
+
+    public function payedBox(string $idBox): void
+    {
+        $box = Box::findOrFail($idBox);
+        $box->statut = Box::PAYED;
+        $box->save();
+    }
 }

@@ -22,8 +22,6 @@ class PostValideBox extends AbstractAction {
         // Verification qu'il y ait au-moins 2 prestations et 2 categories diff
         if( count($prestas) >= 2 and count(array_unique($cat_ids)) >= 2){
             $this->boxService->validateBox($_POST['id']);
-
-            $_SESSION['state_box'] = 2;
         }
 
         return  $rs->withStatus(302)->withHeader('Location', '/box');
