@@ -7,16 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasUuids;
-    protected $table = 'user';
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    public $timestamps = false;
+    use HasUuids; // Utilise le trait HasUuids pour gérer les UUIDs comme clés primaires
 
-    public $keyType = 'string';
+    protected $table = 'user'; // Spécifie le nom de la table associée à ce modèle
 
+    protected $primaryKey = 'id'; // Définit la clé primaire
+    public $incrementing = false; // Indique que la clé primaire n'est pas un entier auto-incrémenté
+    public $timestamps = false; // Indique que le modèle ne gère pas les colonnes created_at et updated_at
+
+    public $keyType = 'string'; // Indique que la clé primaire est de type string
+
+    // Définition de la relation one-to-many avec le modèle Box
     function boxes()
     {
-        return $this->hasMany('gift\api\core\domain\entities\Box', 'createur_id');
+        return $this->hasMany('gift\api\core\domain\entities\Box', 'createur_id'); // Relation hasMany avec Box
     }
 }

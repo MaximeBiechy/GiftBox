@@ -2,7 +2,7 @@
 
 namespace gift\api\core\services\box;
 
-class BoxServiceNotFoundException extends \Exception
+class BoxServiceNotFoundException extends Exception
 {
 
 }

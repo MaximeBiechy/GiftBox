@@ -8,12 +8,14 @@ use gift\api\core\domain\entities\Prestation;
 class BoxService implements BoxServiceInterface
 {
 
+    // Récupère toutes les boîtes et les retourne sous forme de tableau
     public function getBoxes(): array
     {
         $boxes = Box::all();
         return $boxes->toArray();
     }
 
+    // Récupère une boîte par son ID
     public function getBoxById(string $id): array
     {
         try {
@@ -24,13 +26,16 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Crée une nouvelle boîte avec les données fournies
     public function createBox(array $data): string
     {
+        // Vérifie et assainit les entrées utilisateur
         if ($data['libelle'] !== filter_var($data['libelle'], FILTER_SANITIZE_SPECIAL_CHARS)
-            || $data['description'] !== filter_var($data['description'], FILTER_SANITIZE_SPECIAL_CHARS) ||
-            $data['message_kdo'] !== filter_var($data['message_kdo'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+            || $data['description'] !== filter_var($data['description'], FILTER_SANITIZE_SPECIAL_CHARS)
+            || $data['message_kdo'] !== filter_var($data['message_kdo'], FILTER_SANITIZE_SPECIAL_CHARS)) {
             throw new BoxServiceBadException("Donnée suspecte");
         }
+        // Crée et sauvegarde une nouvelle boîte
         $box = new Box();
         $box->token = bin2hex(random_bytes(32));
         $box->libelle = $data['libelle'];
@@ -45,6 +50,7 @@ class BoxService implements BoxServiceInterface
         return $box->id;
     }
 
+    // Met à jour une boîte existante avec les données fournies
     public function updateBox(array $data): void
     {
         $box = Box::find($data['id']);
@@ -58,34 +64,37 @@ class BoxService implements BoxServiceInterface
         $box->save();
     }
 
+    // Supprime une boîte par son ID
     public function deleteBox(string $id): void
     {
         $box = Box::find($id);
         $box->delete();
     }
 
+    // Récupère les boîtes d'un utilisateur par son ID
     public function getBoxByUser(string $user_id): array
     {
         try {
             $boxes = Box::where('createur_id', $user_id)->get();
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new BoxServiceNotFoundException("Aucune box n'a été trouvée pour cet utilisateur");
         }
         return $boxes->toArray();
     }
 
+    // Récupère les boîtes liées à une prestation par l'ID de la prestation
     public function getBoxByPrestation(string $presta_id): array
     {
-        try{
+        try {
             $prestation = Prestation::findOrFail($presta_id);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new BoxServiceNotFoundException("La prestation n'existe pas");
         }
         $box = $prestation->box2presta()->get();
         return $box->toArray();
     }
 
+    // Ajoute une prestation à une boîte avec une quantité spécifiée
     public function addPrestationToBox(string $box_id, string $presta_id, int $quantite): void
     {
         try {
@@ -109,7 +118,7 @@ class BoxService implements BoxServiceInterface
         $box->box2presta()->attach($presta_id, ['quantite' => $quantite]);
     }
 
-
+    // Retire une prestation d'une boîte
     public function removePrestationFromBox(string $box_id, string $presta_id): void
     {
         try {
@@ -124,6 +133,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Récupère les prestations d'une boîte par l'ID de la boîte
     public function getPrestationsFromBox(string $box_id): array
     {
         try {
@@ -135,6 +145,7 @@ class BoxService implements BoxServiceInterface
         return $prestations->toArray();
     }
 
+    // Met à jour la quantité d'une prestation dans une boîte et retourne le prix total
     public function updatePrestationQuantity(string $box_id, string $presta_id, int $quantity): int
     {
         try {
@@ -146,6 +157,7 @@ class BoxService implements BoxServiceInterface
                 $prestation->pivot->save();
             }
 
+            // Calcule le prix total de la boîte
             $totalPrice = $box->box2presta->sum(function ($prestation) {
                 return $prestation->pivot->quantite * $prestation->tarif;
             });
@@ -156,15 +168,16 @@ class BoxService implements BoxServiceInterface
         } catch (\Exception $e) {
             throw new BoxServiceNotFoundException("La prestation n'existe pas");
         }
-
     }
 
+    // Récupère les boîtes prédefinies
     public function getPredifinedBoxes(): array
     {
         $boxes = Box::where('predefinie', 1)->get();
         return $boxes->toArray();
     }
 
+    // Supprime une prestation d'une boîte et met à jour le montant total
     public function delPrestationFromBox(string $box_id, string $presta_id): void
     {
         try {
@@ -179,6 +192,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Valide une boîte en mettant à jour son statut
     public function validateBox(string $box_id): void
     {
         try {
@@ -193,6 +207,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Marque une boîte comme payée en mettant à jour son statut
     public function payBox(string $box_id): void
     {
         try {
@@ -204,6 +219,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Marque une boîte comme livrée en mettant à jour son statut
     public function deliverBox(string $box_id): void
     {
         try {
@@ -215,6 +231,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Récupère le token associé à une boîte par son ID
     public function getTokenbyBox(string $box_id): string
     {
         try {
@@ -225,6 +242,7 @@ class BoxService implements BoxServiceInterface
         }
     }
 
+    // Récupère une boîte par son token
     public function getBoxByToken(string $token): array
     {
         try {
