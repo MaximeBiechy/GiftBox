@@ -47,6 +47,7 @@ class BoxService implements BoxServiceInterface {
     public function getPrestationFromBox(string $idBox): array
     {
         $box = Box::find($idBox);
+        $_SESSION['state_box_detail'] = $box['statut'];
         $prestations = $box->prestations;
         return $prestations->toArray();
     }
@@ -59,6 +60,19 @@ class BoxService implements BoxServiceInterface {
 
     public function defineCurrentBox(string $idBox): void
     {
-        $_SESSION['box'] = Box::findOrFail($idBox);
+        $box = Box::findOrFail($idBox);
+        $_SESSION['box'] = $box;
+        $_SESSION['state_box_detail'] = $box['statut'];
+    }
+
+    public function validateBox(string $idBox): void
+    {
+
+        if ($_SESSION['user']['id'] == $_SESSION['box']->createur_id) {
+            $box = Box::findOrFail($idBox);
+            $box->statut = Box::VALIDATED;
+            $box->save();
+        }
+
     }
 }

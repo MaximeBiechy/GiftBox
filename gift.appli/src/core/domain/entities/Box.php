@@ -19,6 +19,12 @@ class Box extends Model {
 
     protected $fillable = ['id', 'token', 'libelle', 'description', 'montant', 'kdo', 'message_kdo', 'status'];
 
+    const CREATED = 1;
+    const VALIDATED= 2;
+    const PAYED = 3;
+    const SENDED = 4;
+    const USED = 5;
+
     // Méthodes
     public function prestations() {
         return $this->belongsToMany('gift\appli\core\domain\entities\Prestation', 'box2presta', 'box_id', 'presta_id')

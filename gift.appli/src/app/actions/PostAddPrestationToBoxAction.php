@@ -31,9 +31,16 @@ class PostAddPrestationToBoxAction extends AbstractAction
                 return $rs->withStatus(302)->withHeader('Location', '/prestations'); 
             }
 
-            $this->boxService->addPrestationToBox($prestation_id, $box->id);
-            
-            return $rs->withStatus(302)->withHeader('Location', '/box');
+            if($_SESSION['state_box_detail'] === 1){
+                $this->boxService->addPrestationToBox($prestation_id, $box->id);
+                return $rs->withStatus(302)->withHeader('Location', '/box');
+            }else{
+                echo "<script type='text/javascript'>
+                alert('La box courrante est déjà validé');
+                window.location.href = '/box';
+              </script>";
+                exit;
+            }
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

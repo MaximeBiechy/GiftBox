@@ -21,6 +21,8 @@ use gift\appli\app\actions\PostCreateCategorieAction;
 use gift\appli\app\actions\PostDefineCurrentBoxAction;
 use gift\appli\app\actions\PostDeletePrestationFromBoxAction;
 use gift\appli\app\actions\PostInscriptionAction;
+use gift\appli\app\actions\PostPayedBox;
+use gift\appli\app\actions\PostValideBox;
 
 return function (\Slim\App $app): \Slim\App {
 
@@ -60,6 +62,16 @@ return function (\Slim\App $app): \Slim\App {
     $app->post('/box/addPrestation[/]', 
         PostAddPrestationToBoxAction::class
         )->setName('/box/addPrestation');
+
+    // 9) Valider une box
+    $app->post('/box/valider[/]',
+        PostValideBox::class
+    )->setName('/box/valider');
+
+    // 10) Payer une box
+    $app->post('/box/payer[/]',
+        PostPayedBox::class
+    )->setName('/box/payer');
 
     // 11) Suppression de prestations dans un coffret
     $app->post('/deletePrestationFromBox[/]', 

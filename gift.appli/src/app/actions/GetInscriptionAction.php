@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace gift\appli\app\actions;
 
 use gift\appli\app\actions\AbstractAction;
+use gift\appli\app\utils\CsrfService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
