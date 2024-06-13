@@ -3,14 +3,19 @@
 namespace gift\appli\core\services\box;
 
 use gift\appli\core\domain\entities\Box;
-use gift\appli\core\domain\entities\Prestation;
 
 class BoxService implements BoxServiceInterface {
     
     public function getBoxFromUser(string $idUser): array
     {
-        $box = Box::where('createur_id', $idUser)->get();
+        $box = Box::where('createur_id', $idUser)->where('predefinie', 0)->get();
         return $box->toArray();   
+    }
+
+    public function getBoxPredefinis(): array
+    {
+        $box = Box::where('predefinie', 1)->get();
+        return $box->toArray();
     }
 
     public function createBox(array $data) : string {
@@ -23,6 +28,9 @@ class BoxService implements BoxServiceInterface {
         if ($data['cadeau'] == 1) {
             $box->message_kdo = $data['message_kdo'];
         }
+        if ($data['predefinie'] == 1) {
+            $box->predefinie = 1;
+        }
         $box->save();
         return $box->id;
     }
@@ -30,10 +38,6 @@ class BoxService implements BoxServiceInterface {
     public function addPrestationToBox(string $idPresta, string $idBox): void
     {
         $box = Box::find($idBox);
-        $prestations = Prestation::findOrfail($idPresta);
-        $prestation = Prestation::findOrFail($idPresta);
-
-        $prestation = Prestation::findOrFail($idPresta);
 
         $existingPrestation = $box->prestations()->where('presta_id', $idPresta)->first();
     

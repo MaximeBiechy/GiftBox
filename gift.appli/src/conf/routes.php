@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use gift\appli\app\actions\GetBoxAction;
+use gift\appli\app\actions\GetBoxPredefinisAction;
 use gift\appli\app\actions\GetCategoryAction;
 use gift\appli\app\actions\GetCategoryActionById;
 use gift\appli\app\actions\GetCoffret;
@@ -10,6 +11,7 @@ use gift\appli\app\actions\GetConnexionAction;
 use gift\appli\app\actions\GetCreateBox;
 use gift\appli\app\actions\GetCreateCategorie;
 use gift\appli\app\actions\GetDetailBoxAction;
+use gift\appli\app\actions\GetDetailBoxPredefinieAction;
 use gift\appli\app\actions\GetInscriptionAction;
 use gift\appli\app\actions\GetLogoutAction;
 use gift\appli\app\actions\GetPrestationByACategory;
@@ -99,6 +101,10 @@ return function (\Slim\App $app): \Slim\App {
         GetDetailBoxAction::class
         )->setName('/detailBox');
 
+    $app->get('/detailBoxPredefinie[/]',
+        GetDetailBoxPredefinieAction::class
+        )->setName('/detailBoxPredefinie');
+
     // 15) Affiche la page de connexion 
     $app->get('/connexion[/]',
         GetConnexionAction::class
@@ -123,6 +129,11 @@ return function (\Slim\App $app): \Slim\App {
     $app->get('/box[/]',
         GetBoxAction::class
         )->setName('/box');
+
+    // 18) Afficher les box prédéfinis
+    $app->get('/box_predefinies[/]',
+        GetBoxPredefinisAction::class
+        )->setName('box_predefinies');
 
     // Affiche une catégorie en fonction de son id
     $app->get('/categorie/{id}[/]',

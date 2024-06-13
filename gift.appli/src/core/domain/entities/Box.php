@@ -17,7 +17,7 @@ class Box extends Model {
     public $incrementing = false;
     public $keyType = 'string';
 
-    protected $fillable = ['id', 'token', 'libelle', 'description', 'montant', 'kdo', 'message_kdo', 'status'];
+    protected $fillable = ['id', 'token', 'libelle', 'description', 'montant', 'kdo', 'message_kdo', 'status', 'predefinie'];
 
     const CREATED = 1;
     const VALIDATED= 2;
