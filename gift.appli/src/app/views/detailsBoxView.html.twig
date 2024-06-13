@@ -20,19 +20,39 @@
                             <span style="color:black;">Prix total : </span>
                             <span class="total-price">{{ prestation.tarif * prestation.pivot.quantite }}</span> €
                         </p>
-                        <div class="quantite">
-                            <label for="quantity-{{ prestation.id }}">Quantité</label>
-                            <input type="number" id="quantity-{{ prestation.id }}" class="quantity" value="{{ prestation.pivot.quantite }}" min="0" placeholder="Quantité">
-                        </div>
-                        <form action="{{ url_for('/deletePrestationFromBox') }}" method="post" class="delete-form">
-                            <input type="hidden" name="prestation_id" value="{{ prestation.id }}">
-                            <input type="hidden" name="box_id" value="{{ box_id }}">
-                            <input type="hidden" name="csrf" value="{{ csrf }}">
-                            <button class="remove-btn">Supprimer</button>
-                        </form>
+                        {% if validate !=2 %}
+                            <div class="quantite">
+                                <label for="quantity-{{ prestation.id }}">Quantité</label>
+                                <input type="number" id="quantity-{{ prestation.id }}" class="quantity" value="{{ prestation.pivot.quantite }}" min="0" placeholder="Quantité">
+                            </div>
+                            <form action="{{ url_for('/deletePrestationFromBox') }}" method="post" class="delete-form">
+                                <input type="hidden" name="prestation_id" value="{{ prestation.id }}">
+                                <input type="hidden" name="box_id" value="{{ box_id }}">
+                                <input type="hidden" name="csrf" value="{{ csrf }}">
+
+                                    <button class="remove-btn">Supprimer</button>
+
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
+        </div>
+
+        <div>
+            {% if validate == 1 %}
+                <form action="{{ url_for('/box/valider') }}" method="post">
+                    <input type="hidden" name="id" value="{{ box_id }}">
+                    <button class="btn btn-current-box">Valider</button>
+                </form>
+            {% else %}
+                {% if validate == 2 %}
+                    <form action="{{ url_for('/box/encours') }}" method="post">
+                        <input type="hidden" name="id" value="{{ box_id }}">
+                        <button class="btn btn-current-box">Payer</button>
+                    </form>
+                {% endif %}
+            {% endif %}
         </div>
 
     </div>

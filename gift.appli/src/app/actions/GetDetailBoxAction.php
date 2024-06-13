@@ -40,6 +40,7 @@ class GetDetailBoxAction extends AbstractAction
 
         $prestations = $this->boxService->getPrestationFromBox($idBox);
         $view = Twig::fromRequest($rq);
-        return $view->render($rs, $this->template, ['prestations' => $prestations, 'box_id' => $idBox, 'csrf' => CsrfService::generate()]);
+
+        return $view->render($rs, $this->template, ['prestations' => $prestations, 'box_id' => $idBox, 'validate' => $_SESSION['state_box_detail'] ?? 1, 'csrf' => CsrfService::generate()]);
     }
 }

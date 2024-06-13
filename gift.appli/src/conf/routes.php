@@ -5,6 +5,7 @@ use gift\appli\app\actions\GetBoxAction;
 use gift\appli\app\actions\GetBoxPredefinisAction;
 use gift\appli\app\actions\GetCategoryAction;
 use gift\appli\app\actions\GetCategoryActionById;
+use gift\appli\app\actions\GetCoffret;
 use gift\appli\app\actions\GetHomeAction;
 use gift\appli\app\actions\GetConnexionAction;
 use gift\appli\app\actions\GetCreateBox;
@@ -16,6 +17,7 @@ use gift\appli\app\actions\GetLogoutAction;
 use gift\appli\app\actions\GetPrestationByACategory;
 use gift\appli\app\actions\GetPrestationByIdAction;
 use gift\appli\app\actions\GetPrestationsAction;
+use gift\appli\app\actions\GetUrlCoffret;
 use gift\appli\app\actions\PostAddPrestationToBoxAction;
 use gift\appli\app\actions\PostConnexionAction;
 use gift\appli\app\actions\PostCreateBoxAction;
@@ -23,6 +25,9 @@ use gift\appli\app\actions\PostCreateCategorieAction;
 use gift\appli\app\actions\PostDefineCurrentBoxAction;
 use gift\appli\app\actions\PostDeletePrestationFromBoxAction;
 use gift\appli\app\actions\PostInscriptionAction;
+use gift\appli\app\actions\PostPayedBox;
+use gift\appli\app\actions\PostValidateToPayedAction;
+use gift\appli\app\actions\PostValideBox;
 
 return function (\Slim\App $app): \Slim\App {
 
@@ -63,11 +68,34 @@ return function (\Slim\App $app): \Slim\App {
         PostAddPrestationToBoxAction::class
         )->setName('/box/addPrestation');
 
+    // 9) Valider une box
+    $app->post('/box/valider[/]',
+        PostValideBox::class
+    )->setName('/box/valider');
+
+    // 10) Payer une box
+    $app->post('/box/encours[/]',
+        PostValidateToPayedAction::class
+    )->setName('/box/encours');
+
+    $app->post('/box/payer[/]',
+        PostPayedBox::class
+    )->setName('/box/payer');
+
     // 11) Suppression de prestations dans un coffret
     $app->post('/deletePrestationFromBox[/]', 
         PostDeletePrestationFromBoxAction::class
         )->setName('/deletePrestationFromBox');
-    
+
+    // 13) URL coffret
+    $app->get('/box/coffret[/]',
+        GetUrlCoffret::class
+    )->setName('/box/coffret');
+
+    $app->get('/coffret[/]',
+        GetCoffret::class
+    )->setName('/coffret');
+
     // 14) Affiche les détails d'une box
     $app->get('/detailBox[/]',
         GetDetailBoxAction::class

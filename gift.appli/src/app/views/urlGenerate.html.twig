@@ -1,0 +1,7 @@
+{% extends "mainLayout.html.twig" %}
+
+{% block content %}
+    <div>
+        <a href="{{ url_for("/coffret") }}?id={{ csrf }}">Utiliser le coffret</a>
+    </div>
+{% endblock %}
