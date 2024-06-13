@@ -83,4 +83,18 @@ class BoxService implements BoxServiceInterface {
         $box->token= $id_url;
         $box->save();
     }
+
+    public function getBoxBuy(string $idBox): array
+    {
+        $box = Box::where('token',"=", $idBox)->first();
+        $box->status = Box::SENDED;
+        $prestations = $box->prestations;
+        return $prestations->toArray();
+    }
+
+    public function usedBox(string $idbox):void
+    {
+        $box = Box::where('token',"=", $idbox)->first();
+        $box->status = Box::USED;
+    }
 }

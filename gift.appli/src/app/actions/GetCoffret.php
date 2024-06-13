@@ -26,7 +26,10 @@ class GetCoffret extends AbstractAction
         $queryID = $rq->getQueryParams()['id'];
         $idBox = $queryID ? $queryID : null;
 
-        $prestations = $this->boxService->getPrestationFromBox($idBox);
+        $prestations = $this->boxService->getBoxBuy($idBox);
+
+        $this->boxService->usedBox($idBox);
+
         $view = Twig::fromRequest($rq);
 
         return $view->render($rs, $this->template, ['prestations' => $prestations]);
