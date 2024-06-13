@@ -1,0 +1,16 @@
+.env
+
+gift.appli/src/vendor
+gift.api/src/vendor
+
+gift.appli/src/composer.lock
+gift.api/src/composer.lock
+
+gift.appli/src/conf/gift.db.conf.ini
+gift.api/src/conf/gift.db.conf.ini
+
+*/.DS_Store
+.DS_Store
+
+
+.idea
