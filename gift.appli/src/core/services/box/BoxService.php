@@ -91,7 +91,7 @@ class BoxService implements BoxServiceInterface {
     public function getBoxBuy(string $idBox): array
     {
         $box = Box::where('token',"=", $idBox)->first();
-        $box->status = Box::SENDED;
+        $box->statut = Box::SENDED;
         $box->save();
         $prestations = $box->prestations;
         return $prestations->toArray();
@@ -100,7 +100,7 @@ class BoxService implements BoxServiceInterface {
     public function usedBox(string $idbox):void
     {
         $box = Box::where('token',"=", $idbox)->first();
-        $box->status = Box::USED;
+        $box->statut = Box::USED;
         $box->save();
     }
 }
