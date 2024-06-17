@@ -26,5 +26,5 @@ Installation du projet :
 
 - Dans phpmyadmin, se rendre dans la bd gift puis importer le fichier SQL/giftbox.schema.sql puis le fichier SQL/giftbox.data.sql
 
-- GiftBox fonctionne désormais en localhost "localhost:8082" ou sur docketu "http://docketu.iutnc.univ-lorraine.fr:8082/"
+- GiftBox fonctionne désormais en localhost "localhost:8082" ou sur docketu "http://docketu.iutnc.univ-lorraine.fr:9082/"
 
